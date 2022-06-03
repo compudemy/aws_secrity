@@ -1,0 +1,33 @@
+Following Security Group Best Practices
+
+Introduction
+In this Lab Step, you will begin investigating Trusted Advisor security recommendations starting with security groups. Security groups act as a firewall for EC2 instances deciding what traffic gets in and out. The consequences of letting too much traffic in are obvious, but at the same time, it can be tedious to track all security groups in all regions on your own. Trusted Advisor has a check to flag potentially vulnerable security group rules making the process much easier.
+
+The check looks for unrestricted access to ports on inbound traffic. Any unrestricted port is given a status according to the following rules:
+
+No action is recommended for web traffic ports 80 (HTTP) and 443 (HTTPS), and mail ports 25 (SMTP) and 465 (SMTPS). That is due to the nature of the web and email which are expected to be accessed from anywhere.
+Action is recommended for certain file transfer and database ports. It is highly possible these services contain sensitive information and should be secured.
+Investigation is recommended for all other ports.
+
+Instructions
+1. Navigate to Dashboard > Security within Trusted Advisor.
+
+ 
+
+2. Click the triangle to the left of the Security Groups - Specific Ports Unrestricted check to expand the details.
+
+The text describes the check criteria, provides useful Additional Resources, and a Recommended Action. You will take action on several security group rules to improve the AWS environment created for you by the Cloud Academy Lab environment.
+
+ 
+
+3. Scroll down to focus on the table in the check details:
+
+https://assets.cloudacademy.com/bakery/media/uploads/content_engine/image-c21ccf3e-cf89-43a9-85ae-2ecf5b3754c4.png
+
+Note: You may have to scroll across the table to see all the columns.
+
+Four security group rules have been flagged. A security group used for hosting a Microsoft SharePoint service has three rules for which Trusted Advisor recommends action. You can identify the security group by locating SharePoint under the Security Group Name column. The ports are:
+
+tcp/1433 and udp/1434 used for SharePoint's Microsoft SQL Server database
+tcp/3389 use for Remote Desktop (RDP)
+Note: You may see a security group with a name beginning with cloudlabs-windows-bridge-Ec2WindowsSecurityGroup. This security group is used to facilitate the lab's bridge functionality and should be ignored for the purposes of this lab.
